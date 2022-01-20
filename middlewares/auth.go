@@ -12,6 +12,15 @@ func RequireCreatePermission(c *fiber.Ctx) error {
 	if err != nil {
 		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: err.Error()}
 	}
+
+	user, err := repos.SelectUserById(userID)
+	if err != nil {
+		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: "Invalid authorization token"}
+	}
+	if user.IsAdmin {
+		return c.Next()
+	}
+
 	s := strings.Split(c.Path(), "/")
 	if len(s) < 2 {
 		return &fiber.Error{
@@ -40,6 +49,15 @@ func RequireReadPermission(c *fiber.Ctx) error {
 	if err != nil {
 		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: err.Error()}
 	}
+
+	user, err := repos.SelectUserById(userID)
+	if err != nil {
+		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: "Invalid authorization token"}
+	}
+	if user.IsAdmin {
+		return c.Next()
+	}
+
 	s := strings.Split(c.Path(), "/")
 	if len(s) < 2 {
 		return &fiber.Error{
@@ -68,6 +86,15 @@ func RequireUpdatePermission(c *fiber.Ctx) error {
 	if err != nil {
 		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: err.Error()}
 	}
+
+	user, err := repos.SelectUserById(userID)
+	if err != nil {
+		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: "Invalid authorization token"}
+	}
+	if user.IsAdmin {
+		return c.Next()
+	}
+
 	s := strings.Split(c.Path(), "/")
 	if len(s) < 2 {
 		return &fiber.Error{
@@ -96,6 +123,15 @@ func RequireDeletePermission(c *fiber.Ctx) error {
 	if err != nil {
 		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: err.Error()}
 	}
+
+	user, err := repos.SelectUserById(userID)
+	if err != nil {
+		return &fiber.Error{Code: fiber.StatusUnauthorized, Message: "Invalid authorization token"}
+	}
+	if user.IsAdmin {
+		return c.Next()
+	}
+
 	s := strings.Split(c.Path(), "/")
 	if len(s) < 2 {
 		return &fiber.Error{
