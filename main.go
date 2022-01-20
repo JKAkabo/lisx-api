@@ -8,6 +8,7 @@ import (
 	"lisxAPI/db"
 	"lisxAPI/middlewares"
 	"log"
+	"os"
 )
 
 var resources []string
@@ -16,10 +17,21 @@ func registerResource(resource string) {
 	resources = append(resources, resource)
 }
 
+func noEnvArg() bool {
+	for _, arg := range os.Args {
+		if arg == "--no-env" {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("error: %v", err)
+	if !noEnvArg() {
+		err := godotenv.Load(".env")
+		if err != nil {
+			log.Fatalf("error: %v", err)
+		}
 	}
 	db.DB = db.Connect()
 	app := fiber.New()
