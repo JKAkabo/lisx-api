@@ -60,7 +60,7 @@ func main() {
 	app.Get("/user-permissions", middlewares.RequireAdmin, controllers.GetUserPermissions)
 	app.Put("/user-permissions", middlewares.RequireAdmin, controllers.UpdateUserPermissions)
 
-	registerResource("/analyzers")
-	registerResource("/users")
+	registerResource("analyzers")
+	registerResource("users")
 	log.Fatal(app.Listen(":" + os.Getenv("PORT")))
 }
