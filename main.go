@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
 	"lisxAPI/controllers"
@@ -36,6 +37,7 @@ func main() {
 	db.DB = db.Connect()
 	app := fiber.New()
 	app.Use(logger.New())
+	app.Use(cors.New(cors.ConfigDefault))
 
 	app.Get("/resources", middlewares.RequireAdmin, func(ctx *fiber.Ctx) error {
 		return ctx.JSON(resources)
