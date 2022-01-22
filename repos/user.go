@@ -5,12 +5,11 @@ import (
 	"lisxAPI/models"
 )
 
-func InsertUser(firstName string, lastName string, userType string, username string, password string, isAdmin bool) (int, error) {
+func InsertUser(firstName string, lastName string, username string, password string, isAdmin bool) (int, error) {
 	row := db.DB.QueryRow(
-		"insert into \"user\" (first_name, last_name, type, username, password, is_admin) values ($1, $2, $3, $4, $5, $6) returning id",
+		"insert into \"user\" (first_name, last_name, username, password, is_admin) values ($1, $2, $3, $4, $5) returning id",
 		firstName,
 		lastName,
-		userType,
 		username,
 		password,
 		isAdmin,

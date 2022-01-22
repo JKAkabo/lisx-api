@@ -22,7 +22,6 @@ func CreateUser(c *fiber.Ctx) error {
 	id, err := repos.InsertUser(
 		userCreate.FirstName,
 		userCreate.LastName,
-		userCreate.Type,
 		userCreate.Username,
 		string(hash),
 		userCreate.IsAdmin,
