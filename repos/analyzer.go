@@ -53,6 +53,7 @@ func SelectAnalyzerById(id int) (analyzer models.Analyzer, err error) {
 }
 
 func SelectAnalyzers() (analyzers []models.Analyzer, err error) {
+	analyzers = []models.Analyzer{}
 	err = db.DB.Select(&analyzers, "select * from analyzer")
 	if err != nil {
 		return analyzers, err

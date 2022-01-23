@@ -41,6 +41,7 @@ func SelectAPIKeyByKey(key string) (apiKey models.APIKey, err error) {
 }
 
 func SelectAPIKeys() (apiKeys []models.APIKey, err error) {
+	apiKeys = []models.APIKey{}
 	err = db.DB.Select(&apiKeys, "select * from api_key")
 	if err != nil {
 		return apiKeys, err

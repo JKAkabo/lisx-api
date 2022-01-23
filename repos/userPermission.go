@@ -6,6 +6,7 @@ import (
 )
 
 func SelectUserPermissionByUserID(userID int) (userPermissions []models.UserPermission, err error) {
+	userPermissions = []models.UserPermission{}
 	err = db.DB.Select(&userPermissions, "select * from user_permission where user_id = $1", userID)
 	return userPermissions, err
 }

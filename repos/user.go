@@ -39,6 +39,7 @@ func SelectUserByUsername(username string) (user models.User, err error) {
 }
 
 func SelectUsers() (users []models.User, err error) {
+	users = []models.User{}
 	err = db.DB.Select(&users, "select * from \"user\"")
 	if err != nil {
 		return users, err
