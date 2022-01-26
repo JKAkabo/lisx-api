@@ -2,7 +2,7 @@ package models
 
 type AnalyzerCreate struct {
 	Name           string `json:"name"`
-	Protocol       string `json:"protocol"`
+	Protocol       string `json:"protocol" validate:"oneof='tcp' 'serial'"`
 	IP             string `json:"ip"`
 	Port           int    `json:"port"`
 	ServerMode     bool   `json:"serverMode"`
@@ -13,7 +13,6 @@ type AnalyzerCreate struct {
 	StopBits       int    `json:"stopBits"`
 	StartDelimiter string `json:"startDelimiter"`
 	EndDelimiter   string `json:"endDelimiter"`
-	UserID         int    `json:"userID"`
 }
 type Analyzer struct {
 	ID             int    `json:"id" db:"id"`
@@ -29,5 +28,4 @@ type Analyzer struct {
 	StopBits       int    `json:"stopBits" db:"stop_bits"`
 	StartDelimiter string `json:"startDelimiter" db:"start_delimiter"`
 	EndDelimiter   string `json:"endDelimiter" db:"end_delimiter"`
-	UserID         int    `json:"userID" db:"user_id"`
 }
