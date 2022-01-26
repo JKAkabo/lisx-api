@@ -13,6 +13,8 @@ type AnalyzerCreate struct {
 	StopBits       int    `json:"stopBits"`
 	StartDelimiter string `json:"startDelimiter"`
 	EndDelimiter   string `json:"endDelimiter"`
+	Format         string `json:"format"`
+	FormatSpec     string `json:"formatSpec"`
 }
 type Analyzer struct {
 	ID             int    `json:"id" db:"id"`
@@ -28,4 +30,6 @@ type Analyzer struct {
 	StopBits       int    `json:"stopBits" db:"stop_bits"`
 	StartDelimiter string `json:"startDelimiter" db:"start_delimiter"`
 	EndDelimiter   string `json:"endDelimiter" db:"end_delimiter"`
+	Format         string `json:"format" db:"format"`
+	FormatSpec     string `json:"formatSpec" db:"format_spec"`
 }

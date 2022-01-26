@@ -18,9 +18,11 @@ func InsertAnalyzer(
 	stopBits int,
 	startDelimiter string,
 	endDelimiter string,
+	format string,
+	formatSpec string,
 ) (int, error) {
 	row := db.DB.QueryRow(
-		"insert into analyzer (name, protocol, ip, port, server_mode, serial_port, baud_rate, parity, data_bits, stop_bits, start_delimiter, end_delimiter) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning id",
+		"insert into analyzer (name, protocol, ip, port, server_mode, serial_port, baud_rate, parity, data_bits, stop_bits, start_delimiter, end_delimiter, format, format_spec) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) returning id",
 		name,
 		protocol,
 		ip,
@@ -33,6 +35,8 @@ func InsertAnalyzer(
 		stopBits,
 		startDelimiter,
 		endDelimiter,
+		format,
+		formatSpec,
 	)
 	var id int
 	err := row.Scan(&id)
