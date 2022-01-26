@@ -26,6 +26,8 @@ func CreateAnalyzer(c *fiber.Ctx) error {
 		analyzerCreate.StopBits,
 		analyzerCreate.StartDelimiter,
 		analyzerCreate.EndDelimiter,
+		analyzerCreate.Format,
+		analyzerCreate.FormatSpec,
 	)
 	if err != nil {
 		log.Printf("error: %v", err)
